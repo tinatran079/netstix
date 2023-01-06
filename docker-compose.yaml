@@ -9,8 +9,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=games
-      - POSTGRES_PASSWORD=games
+      POSTGRES_DB: games
+      POSTGRES_PASSWORD: games
+      POSTGRES_USER: games
     ports:
       - 15432:5432
   fastapi:
@@ -22,7 +23,7 @@ services:
     volumes:
       - ./games:/app
     environment:
-      DATABASE_URL: postgresql://games:games@postgres/games =
+      DATABASE_URL: postgresql://games:games@postgres/games
       WAIT_HOSTS: postgres:5432
       POSTGRES_USER: games
   ghi:
