@@ -1,7 +1,19 @@
 volumes:
   postgres-data:
     external: true
+  pg-admin:
+    external: true
 services:
+  pg-admin:
+    image: dpage/pgadmin4
+    volumes:
+      - pg-admin:/var/lib/pgadmin
+    ports:
+      - 8082:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: nicolasfgallo1998@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: games
+      PGADMIN_DISABLE_POSTFIX: 1
   postgres:
     build:
       context: ./relational-data
