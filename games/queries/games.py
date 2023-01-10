@@ -43,4 +43,5 @@ class UserRepository:
                 ]
             )
             id = db.fetchone()[0]
+
             return User(id=id, email=user.email, password=user.password, username=user.username)
