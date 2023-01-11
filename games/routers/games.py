@@ -8,6 +8,7 @@ router = APIRouter()
 @router.post("/users")
 def create_user(
     user: UserIn,
-    repo: UserRepository.create = Depends()
+    repo: UserRepository = Depends()
 ):
+    print("AMONG")
     return repo.create(user)

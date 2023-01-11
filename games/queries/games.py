@@ -28,7 +28,7 @@ class UserRepository:
     def create(self, user: UserIn) -> User:
         with pool.connection() as conn:
             with conn.cursor() as db:
-                db.execute(
+                result = db.execute(
                 """
                 INSERT INTO Users
                     (username, password, email)
@@ -42,6 +42,6 @@ class UserRepository:
                     user.email,
                 ]
             )
-            id = db.fetchone()[0]
-
-            return User(id=id, email=user.email, password=user.password, username=user.username)
+            # id = db.fetchone()[0]
+            return ("nick smells")
+            # return User(id=id, username=user.username, password=user.password, email=user.email)
