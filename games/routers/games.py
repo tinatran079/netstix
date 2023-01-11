@@ -23,14 +23,14 @@ class UserOut(BaseModel):
 class UsersOut(BaseModel):
     users: list[UserOut]
 
-@router.post("/users", response_model=UserOut)
+@router.post("/api/users", response_model=UserOut)
 def create_user(
     user: UserIn,
     queries: UserQueries = Depends()
 ):
     return queries.create(user)
 
-@router.get("/users", response_model=UsersOut)
+@router.get("/api/users", response_model=UsersOut)
 def get_users(
     queries: UserQueries = Depends(),
 ):

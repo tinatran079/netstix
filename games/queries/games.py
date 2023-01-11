@@ -37,6 +37,8 @@ class UserQueries:
                     id = data['id']
 
                     return data
+    def get_user(self, id):
+        pass
     def get_users(self):
         with pool.connection() as conn:
                 with conn.cursor() as db:
