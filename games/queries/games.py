@@ -22,7 +22,7 @@ class UserQueries:
                         (username, password, email)
                     VALUES
                         (%s,%s,%s)
-                    RETURNING id
+                    RETURNING id, username, email
                     """,
                     [
                         user.username,
@@ -34,11 +34,27 @@ class UserQueries:
                     row = db.fetchone()
                     for i, col in enumerate(db.description):
                         data[col.name] = row[i]
-                    id = data['id']
-
                     return data
-    def get_user(self, id):
-        pass
+    def get_user(self, id,):
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    SELECT id, username, email
+                    FROM Users
+                    WHERE id = %s
+                    """,
+                        [id],
+                )
+                data = None
+                row = db.fetchone()
+                if row is not None:
+                    data = {}
+                    for i, col in enumerate(db.description):
+                        data[col.name] = row[i]
+                return data
+
+
     def get_users(self):
         with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -56,6 +72,45 @@ class UserQueries:
                         for i, col in enumerate(db.description):
                             data[col.name] = row[i]
                         users.append(data)
-                    print(users)
 
                     return users
+
+    def delete_user(self, user_id):
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    DELETE FROM Users
+                    WHERE id = %s
+                    """,
+                    [user_id],
+                )
+
+
+    def update_user(self, user_id, data):
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                params = [
+                    data.username,
+                    data.password,
+                    data.email,
+                    user_id,
+                ]
+                db.execute(
+                    """
+                    UPDATE Users
+                    SET username = %s
+                    , password = %s
+                    , email = %s
+                    WHERE id = %s
+                    RETURNING id, username, email
+                    """,
+                    params,
+                )
+                record = None
+                row = db.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, col in enumerate(db.description):
+                        record[col.name] = row[i]
+                return record
