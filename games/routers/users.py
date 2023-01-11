@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response
 
-from queries.games import UserQueries
+from queries.users import UserQueries
 from pydantic import BaseModel
 
 
