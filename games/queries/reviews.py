@@ -36,3 +36,23 @@ class ReviewQueries:
                     for i, col in enumerate(db.description):
                         record[col.name] = row[i]
                 return record
+
+    def get_reviews(self):
+        with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT id, subject, description, user_id
+                        FROM Reviews
+                        ORDER BY id
+                        """
+                    )
+
+                    reviews = []
+                    for row in db.fetchall():
+                        data = {}
+                        for i, col in enumerate(db.description):
+                            data[col.name] = row[i]
+                        reviews.append(data)
+
+                    return reviews
