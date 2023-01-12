@@ -9,17 +9,23 @@ class Review(BaseModel):
     subject: str
     description: str
     user_id: int
+    game_id: int
+    game_title: str
 
 class ReviewIn(BaseModel):
     subject: str
     description: str
     user_id: int
+    game_id: int
+    game_title: str
 
 class ReviewOut(BaseModel):
     id: int
     subject: str
     description: str
     user_id: int
+    game_id: int
+    game_title: str
 
 class ReviewsOut(BaseModel):
     reviews: list[ReviewOut]
@@ -38,3 +44,11 @@ def get_reviews(
     return {
         "reviews": queries.get_reviews()
     }
+
+@router.delete("/api/reviews/{user_id}", response_model=bool)
+def delete_user(
+    user_id: int,
+    queries: ReviewQueries = Depends(),
+):
+    queries.delete_review(user_id)
+    return True

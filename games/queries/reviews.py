@@ -18,15 +18,17 @@ class ReviewQueries:
                 db.execute(
                 """
                 INSERT INTO Reviews
-                    (subject, description, user_id)
+                    (subject, description, user_id, game_id, game_title)
                 VALUES
-                    (%s,%s,%s)
-                RETURNING id, subject, description, user_id
+                    (%s,%s,%s,%s,%s)
+                RETURNING id, subject, description, user_id, game_id, game_title
                 """,
                     [
                         review.subject,
                         review.description,
                         review.user_id,
+                        review.game_id,
+                        review.game_title
                     ],
                 )
                 record = None
@@ -42,7 +44,7 @@ class ReviewQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, subject, description, user_id
+                        SELECT id, subject, description, user_id, game_id, game_title
                         FROM Reviews
                         ORDER BY id
                         """
@@ -56,3 +58,14 @@ class ReviewQueries:
                         reviews.append(data)
 
                     return reviews
+
+    def delete_review(self, user_id):
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    DELETE FROM Reviews
+                    WHERE id = %s
+                    """,
+                    [user_id],
+                )
