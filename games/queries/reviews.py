@@ -59,7 +59,7 @@ class ReviewQueries:
 
                     return reviews
 
-    def delete_review(self, user_id):
+    def delete_review(self, review_id):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -67,5 +67,5 @@ class ReviewQueries:
                     DELETE FROM Reviews
                     WHERE id = %s
                     """,
-                    [user_id],
+                    [review_id],
                 )

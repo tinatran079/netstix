@@ -45,10 +45,10 @@ def get_reviews(
         "reviews": queries.get_reviews()
     }
 
-@router.delete("/api/reviews/{user_id}", response_model=bool)
-def delete_user(
-    user_id: int,
+@router.delete("/api/reviews/{review_id}", response_model=bool)
+def delete_review(
+    review_id: int,
     queries: ReviewQueries = Depends(),
 ):
-    queries.delete_review(user_id)
+    queries.delete_review(review_id)
     return True
