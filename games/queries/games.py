@@ -13,5 +13,5 @@ class games_queries:
             'key': key,
             'search': 'AMONG US'
         }
-        res = requests.get(f'https://api.rawg.io/api/games',params=params)
+        res = requests.get(f'https://api.rawg.io/api/games', params=params)
         return res.json()
