@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 from queries.reviews import ReviewQueries
+from authenticator import authenticator
+
 
 router = APIRouter()
 
@@ -33,7 +35,8 @@ class ReviewsOut(BaseModel):
 @router.post("/api/reviews", response_model=ReviewOut)
 def create_review(
     review: ReviewIn,
-    queries: ReviewQueries = Depends()
+    queries: ReviewQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return queries.create_review(review)
 
