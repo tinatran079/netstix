@@ -16,7 +16,7 @@ function App() {
             <Route path="new" element={<LoginPage/>}/>
           </Route>
           <Route path="modal">
-            <Route path='/' element={<ExampleModal/>}/>
+            <Route path="new" element={<ExampleModal/>}/>
           </Route>
         </Routes>
       </div>
