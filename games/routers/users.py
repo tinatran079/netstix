@@ -7,17 +7,20 @@ from pydantic import BaseModel
 router = APIRouter()
 
 class User(BaseModel):
+    account_id: int
     id: int
     username: str
     password: str
     email: str
 
 class UserIn(BaseModel):
+    account_id: int
     username: str
     password: str
     email: str
 
 class UserOut(BaseModel):
+    account_id: int
     id: int
     username: str
     email: str

@@ -5,9 +5,9 @@ steps = [
         """
         CREATE TABLE Accounts (
             id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(20) NOT NULL,
-            hashed_password VARCHAR(20) NOT NULL,
-            email VARCHAR(255) NOT NULL
+            username VARCHAR(100) NOT NULL,
+            hashed_password VARCHAR(100) NOT NULL,
+            email VARCHAR(100) NOT NULL
 
         );
         """,
@@ -22,9 +22,9 @@ steps = [
         """
         CREATE TABLE Users (
             id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(20) NOT NULL,
-            password VARCHAR(20) NOT NULL,
-            email VARCHAR(255) NOT NULL,
+            username VARCHAR(100) NOT NULL,
+            password VARCHAR(100) NOT NULL,
+            email VARCHAR(100) NOT NULL,
             account_id INTEGER NOT NULL REFERENCES Accounts("id") ON DELETE CASCADE
 
         );

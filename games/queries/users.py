@@ -19,15 +19,16 @@ class UserQueries:
                     db.execute(
                     """
                     INSERT INTO Users
-                        (username, password, email)
+                        (account_id, username, password, email)
                     VALUES
-                        (%s,%s,%s)
-                    RETURNING id, username, email
+                        (%s,%s,%s,%s)
+                    RETURNING account_id, id, username, email
                     """,
                     [
+                        user.account_id,
                         user.username,
                         user.password,
-                        user.email,
+                        user.email
                     ]
                 )
                     data = {}
@@ -40,7 +41,7 @@ class UserQueries:
             with conn.cursor() as db:
                 db.execute(
                     """
-                    SELECT id, username, email
+                    SELECT account_id, id, username, email
                     FROM Users
                     WHERE id = %s
                     """,
@@ -60,7 +61,7 @@ class UserQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, username, email
+                        SELECT account_id, id, username, email
                         FROM Users
                         ORDER BY id
                         """
