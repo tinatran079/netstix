@@ -1,13 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import users, reviews, games
+from routers import users, reviews, games, accounts
 import os
 from fastapi import APIRouter
+from authenticator import authenticator
 
 app = FastAPI()
 app.include_router(users.router)
+app.include_router(accounts.router)
 app.include_router(reviews.router)
 app.include_router(games.router)
+app.include_router(authenticator.router)
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,5 +22,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
