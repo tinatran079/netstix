@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignupPage from './signup'
-import LoginPage from './login';
+import LoginPage from './login'
+import ExampleModal from './modal';
 
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
           </Route>
           <Route path="Login">
             <Route path="new" element={<LoginPage/>}/>
+          </Route>
+          <Route path="modal">
+            <Route path="new" element={<ExampleModal/>}/>
           </Route>
         </Routes>
       </div>
