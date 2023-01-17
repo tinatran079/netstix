@@ -1,0 +1,11 @@
+th {
+  max-width: 170px;
+  width: 170px;
+  height: 15px;
+  text-align: center;
+}
+
+th {
+  border-right: 1px solid rgba(0, 0, 0, 0.272);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.648);
+}
