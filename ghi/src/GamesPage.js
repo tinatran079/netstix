@@ -30,9 +30,13 @@ function GamesPage() {
       {games.map((game) => (
           <div key={game.id}>
             <tr>
-              <th>{game.name}</th>
-              <th>{game.rating}</th>
-              <th>{game.tags[0].name}</th>
+              <td id="title">{game.name}</td>
+              <td>{game.rating}</td>
+              <td>
+                {game.tags.slice(0,3).map((tag) => (
+                    <ul key={tag.name}>{tag.name}</ul>
+                ))}
+              </td>
               {/* <th>
                 <img src={game.background_image} />
               </th> */}
