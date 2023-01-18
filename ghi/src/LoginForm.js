@@ -17,6 +17,8 @@ import { useToken } from "./auth";
     e.preventDefault();
     login(username, password);
 
+
+
   }
   return (
     <div className="row">
@@ -28,9 +30,8 @@ import { useToken } from "./auth";
               <input
                 onChange={handleUsernameChange}
                 value={username}
-                placeholder="Enter your username"
                 required
-                type="text"
+                type="username"
                 name="username"
                 id="username"
                 className="form-control"
@@ -41,8 +42,6 @@ import { useToken } from "./auth";
               <input
                 onChange={handlePasswordChange}
                 value={password}
-                placeholder="Enter your password"
-                required
                 type="password"
                 name="password"
                 id="password"

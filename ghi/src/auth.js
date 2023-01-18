@@ -99,6 +99,7 @@ export function useToken() {
         console.log(token)
       return;
     }
+
     let error = await response.json();
     return handleErrorMessage(error);
   }

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import SignupPage from './signup'
+import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import { AuthProvider } from './auth';
 
@@ -12,7 +12,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="SignUp">
-            <Route path="new" element={<SignupPage/>}/>
+            <Route path="new" element={<SignUpForm/>}/>
           </Route>
           <Route path="Login">
             <Route path="new" element={<LoginForm/>}/>
