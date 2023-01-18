@@ -1,14 +1,38 @@
 import React, { useState } from 'react'
- function SignupPage(){
+
+function SignupPage(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(null);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log("Username:", username);
-        console.log("Password:", password);
-        console.log("Email:", email);
+    function handleSubmit(e) {
+        e.preventDefault();
+        setError(null);
+
+        fetch('api/accounts', {
+          method: 'POST',
+          body: JSON.stringify({username, password, email}),
+          headers: { 'Content-Type': 'application/json'},
+        })
+        .then(async res => {
+          if (!res.ok){
+            return res.json().then(error => {
+              console.log(res.json)
+              setError(error.detail);
+              throw new Error(error.detail);
+            })
+          }
+          return res.json
+
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
     }
 
     return (
