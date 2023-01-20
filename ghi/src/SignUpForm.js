@@ -3,7 +3,7 @@ import { useToken } from "./auth";
 
 
 function SignUpForm() {
-    const [token, , , signup] = useToken();
+    const [token, login, logout, signup] = useToken();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("")
