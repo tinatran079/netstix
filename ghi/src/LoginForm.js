@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useToken } from "./auth";
 
-    function LoginForm() {
-      const [token, login] = useToken();
-      const [email, setEmail] = useState('')
-      const [password, setPassword] = useState('')
+function LoginForm() {
+    const [token, login] = useToken();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleEmailChange = (e) => {
     setEmail(e.target.value);

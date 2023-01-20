@@ -1,22 +1,23 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
-import { AuthProvider } from './auth';
-
+import { AuthProvider, useToken } from './auth';
+import MainPage from './MainPage';
+import Nav from './Nav';
+import Logout from './Logout';
 
 
 function App() {
   return (
     <BrowserRouter>
+    <Nav />
     <AuthProvider>
       <div className="container">
         <Routes>
-          <Route path="SignUp">
-            <Route path="new" element={<SignUpForm/>}/>
-          </Route>
-          <Route path="Login">
-            <Route path="new" element={<LoginForm/>}/>
-          </Route>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path="/signup" element={<SignUpForm/>}/>
+            <Route path="/login" element={<LoginForm/>}/>
+            <Route path="/logout" element={<Logout/>}/>
         </Routes>
       </div>
       </AuthProvider>
@@ -25,4 +26,3 @@ function App() {
 }
 
 export default App;
-

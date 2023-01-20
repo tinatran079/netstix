@@ -97,6 +97,7 @@ export function useToken() {
       const token = await getTokenInternal();
       setToken(token);
         console.log(token)
+      navigate('/')
       return;
     }
 
