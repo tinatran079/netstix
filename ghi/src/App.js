@@ -5,7 +5,7 @@ import { AuthProvider, useToken } from './auth';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import Logout from './Logout';
-
+import GamesPage from "./GamesPage";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
             <Route path="/signup" element={<SignUpForm/>}/>
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/logout" element={<Logout/>}/>
+            <Route path="/games" element={<GamesPage />} />
         </Routes>
       </div>
       </AuthProvider>
