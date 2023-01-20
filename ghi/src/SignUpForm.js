@@ -22,7 +22,7 @@ function SignUpForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        signup(email, username, password);
+        signup(username, password, email);
 
     }
 

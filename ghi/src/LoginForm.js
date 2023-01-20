@@ -3,11 +3,11 @@ import { useToken } from "./auth";
 
     function LoginForm() {
       const [token, login] = useToken();
-      const [username, setUsername] = useState('')
+      const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
 
-      const handleUsernameChange = (e) => {
-      setUsername(e.target.value);
+    const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
     const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -15,7 +15,7 @@ import { useToken } from "./auth";
 
   async function handleSubmit(e)  {
     e.preventDefault();
-    login(username, password);
+    login(email, password);
 
 
 
@@ -28,15 +28,15 @@ import { useToken } from "./auth";
           <form onSubmit={handleSubmit} id="login-form">
             <div className="form-floating mb-3">
               <input
-                onChange={handleUsernameChange}
-                value={username}
+                onChange={handleEmailChange}
+                value={email}
                 required
-                type="username"
-                name="username"
-                id="username"
+                type="email"
+                name="email"
+                id="email"
                 className="form-control"
               />
-              <label htmlFor="username">Username</label>
+              <label htmlFor="Email">Email</label>
             </div>
             <div className="form-floating mb-3">
               <input
