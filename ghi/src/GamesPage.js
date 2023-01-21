@@ -60,7 +60,9 @@ function GamesPage() {
               <td>{game.rating}</td>
               <td>
                 {game.tags.slice(0,3).map((tag) => (
-                    <ul key={tag.name}>{tag.name}</ul>
+                  <ul key={tag.name}>
+                    {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : 'Russian'}
+                  </ul>
                 ))}
               </td>
               {/* <th>
