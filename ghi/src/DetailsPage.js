@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import "./DetailsPage.css";
+import ReviewForm from "./ReviewForm";
 
 function DetailsPage() {
     const [game, setGame] = useState([]);
@@ -51,13 +52,16 @@ function DetailsPage() {
       const response = await fetch(`http://localhost:8000/api/games/${id}/screenshots`);
       const data = await response.json();
       setScreenshots(data.results)
-      console.log(screenshots)
     }
 
     const getData = async () => {
         getGame();
         getScreenshots();
     };
+
+    const postReview = () => {
+
+    }
 
   return (
     <div >
@@ -110,7 +114,8 @@ function DetailsPage() {
             </td>
         </tr>
         <body>
-            <p dangerouslySetInnerHTML={{__html: game.description}}></p>
+          <ReviewForm />
+          <p dangerouslySetInnerHTML={{__html: game.description}}></p>
         </body>
     </div>
   );
