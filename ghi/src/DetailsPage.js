@@ -6,20 +6,47 @@ import "./DetailsPage.css";
 function DetailsPage() {
     const [game, setGame] = useState([]);
     const [tags, setTags] = useState([]);
+    const [screenshots, setScreenshots] = useState([]);
     const [genres, setGenres] = useState([]);
     const { id } = useParams();
+    const [index, setIndex] = React.useState(0);
+    const delay = 2500;
+
+    React.useEffect(() => {
+      setTimeout(
+        () =>
+          setIndex((prevIndex) =>
+            prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
+          ),
+        delay
+      );
+
+      return () => {};
+    }, [index]);
 
     useEffect(() => {
         getData();
     }, []);
 
-    const getData = async () => {
-        const response = await fetch(`http://localhost:8000/api/games/${id}`);
-        const data = await response.json();
+    const getGame = async () => {
+      const response = await fetch(`http://localhost:8000/api/games/${id}`);
+      const data = await response.json();
 
-        setTags(data.tags)
-        setGenres(data.genres)
-        setGame(data);
+      setGame(data)
+      setTags(data.tags)
+      setGenres(data.genres)
+    }
+
+    const getScreenshots = async () => {
+      const response = await fetch(`http://localhost:8000/api/games/${id}/screenshots`);
+      const data = await response.json();
+      setScreenshots(data.results)
+      console.log(screenshots)
+    }
+
+    const getData = async () => {
+        getGame();
+        getScreenshots();
     };
 
   return (
@@ -31,24 +58,39 @@ function DetailsPage() {
             <th>Rating</th>
             <th>Genre</th>
             <th>Tags</th>
+            <th>Screenshots</th>
           </tr>
         </thead>
         <tr>
             <td id="title">{game.name}</td>
             <td>{game.rating}</td>
             <td>
-            {genres.slice(0,5).map((genre) => (
-                 <ul key={genre.name}>
-                    {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
-                 </ul>
-            ))}
+              {genres.slice(0,5).map((genre) => (
+                <ul key={genre.name}>
+                  {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
+                </ul>
+              ))}
             </td>
             <td>
-            {tags.slice(0,5).map((tag) => (
-                 <ul key={tag.name}>
-                    {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
-                 </ul>
-            ))}
+              {tags.slice(0,5).map((tag) => (
+                <ul key={tag.name}>
+                  {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
+                </ul>
+              ))}
+            </td>
+            <td className="slideshow">
+              <div className="slideshowSlider" style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+                {screenshots.map((ss, index) => (
+                  <div className="slide" key={index}>
+                    <img src={ss.image}  />
+                  </div>
+                ))}
+                <div className="slideshowDots">
+                  {screenshots.map((_, idx) => (
+                    <div key={idx} className="slideshowDot"></div>
+                  ))}
+                </div>
+              </div>
             </td>
         </tr>
         <body>

@@ -16,6 +16,18 @@ def get_game(
     else:
         return data
 
+@router.get('/api/games/{game_id}/screenshots')
+def get_game(
+    game_id: int,
+    response: Response,
+    queries: GamesQueries = Depends(),
+):
+    data = queries.get_screenshots_by_id(game_id)
+    if data is None:
+        response.status_code=404
+    else:
+        return data
+
 @router.get('/api/games')
 def get_games(
     response: Response,
