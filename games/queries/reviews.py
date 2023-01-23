@@ -18,15 +18,15 @@ class ReviewQueries:
                 db.execute(
                 """
                 INSERT INTO Reviews
-                    (subject, description, user_id, game_id, game_title)
+                    (subject, description, account_id, game_id, game_title)
                 VALUES
                     (%s,%s,%s,%s,%s)
-                RETURNING id, subject, description, user_id, game_id, game_title
+                RETURNING id, subject, description, account_id, game_id, game_title
                 """,
                     [
                         review.subject,
                         review.description,
-                        review.user_id,
+                        review.account_id,
                         review.game_id,
                         review.game_title
                     ],
@@ -44,7 +44,7 @@ class ReviewQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, subject, description, user_id, game_id, game_title
+                        SELECT id, subject, description, account_id, game_id, game_title
                         FROM Reviews
                         ORDER BY id
                         """

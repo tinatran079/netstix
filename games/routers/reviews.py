@@ -10,14 +10,14 @@ class Review(BaseModel):
     id: int
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
 
 class ReviewIn(BaseModel):
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
 
@@ -25,7 +25,7 @@ class ReviewOut(BaseModel):
     id: int
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
 
