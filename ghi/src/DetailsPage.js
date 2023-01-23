@@ -11,9 +11,17 @@ function DetailsPage() {
     const { id } = useParams();
     const [index, setIndex] = React.useState(0);
     const delay = 2500;
+    const timeoutRef = React.useRef(null);
+
+    function resetTimeout() {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    }
 
     React.useEffect(() => {
-      setTimeout(
+      resetTimeout()
+      timeoutRef.current = setTimeout(
         () =>
           setIndex((prevIndex) =>
             prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
@@ -21,7 +29,9 @@ function DetailsPage() {
         delay
       );
 
-      return () => {};
+      return () => {
+        resetTimeout()
+      };
     }, [index]);
 
     useEffect(() => {
@@ -85,11 +95,17 @@ function DetailsPage() {
                     <img src={ss.image}  />
                   </div>
                 ))}
-                <div className="slideshowDots">
-                  {screenshots.map((_, idx) => (
-                    <div key={idx} className="slideshowDot"></div>
-                  ))}
-                </div>
+              </div>
+              <div className="slideshowDots">
+                {screenshots.map((_, idx) => (
+                  <div
+                  key={idx}
+                  className={`slideshowDot${index === idx ? " active" : ""}`}
+                  onClick={() => {
+                    setIndex(idx);
+                  }}
+                  ></div>
+                ))}
               </div>
             </td>
         </tr>
