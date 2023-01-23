@@ -26,10 +26,6 @@ function GamesPage() {
     }
   };
 
-  const linkToDetail = () => {
-
-  }
-
   return (
     <div>
       <h2>
@@ -57,8 +53,9 @@ function GamesPage() {
       {games.map((game) => (
           <div key={game.id}>
             <tr>
-              <td id="title"><NavLink to={'/games/' + game.id}>{game.name}</NavLink></td>
-
+              <td id="title">
+                <NavLink to={'/games/' + game.id}>{game.name}</NavLink>
+              </td>
               <td>{game.rating}</td>
               <td>
                 {game.tags.slice(0,3).map((tag) => (
