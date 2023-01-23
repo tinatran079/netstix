@@ -1,78 +1,61 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import "./GamesPage.css";
+import { useParams } from 'react-router-dom';
+import "./DetailsPage.css";
 
-function GamesPage() {
-  const [games, setGames] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams([]);
-  const [searchInput, setSearchInput] = useState("");
+function DetailsPage() {
+    const [game, setGame] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [genres, setGenres] = useState([]);
+    const { id } = useParams();
 
-  useEffect(() => {
-    getData();
-  }, []);
+    useEffect(() => {
+        getData();
+    }, []);
 
-  const getData = async () => {
-    if (searchParams.get("search") === null){
-      const response = await fetch("http://localhost:8000/api/games");
-      const data = await response.json();
-      // console.log(data.results[0].name)
-      setGames(data.results);
-    }
-    else{
-      const query = encodeURIComponent(searchParams.get("search"))
-      const response = await fetch(`http://localhost:8000/api/games?search=${query}`);
-      const data = await response.json();
-      // console.log(data.results[0].name)
-      setGames(data.results);
-    }
-  };
+    const getData = async () => {
+        const response = await fetch(`http://localhost:8000/api/games/${id}`);
+        const data = await response.json();
+
+        setTags(data.tags)
+        setGenres(data.genres)
+        setGame(data);
+    };
 
   return (
-    <div>
-      <h2>
-        <form action="/games" method="get">
-          <label htmlFor="header-search">
-              <span className="visually-hidden">Search games</span>
-          </label>
-          <input
-              type="text"
-              id="header-search"
-              placeholder="Search games"
-              name="search"
-          />
-          <button type="submit">Search</button>
-        </form>
-      </h2>
-      <h1>List of games</h1>
+    <div >
+        <h1>Video Games :&#41;</h1>
         <thead>
           <tr>
             <th>Title</th>
             <th>Rating</th>
+            <th>Genre</th>
             <th>Tags</th>
-            {/* <th>{games[0]}</th> */}
           </tr>
         </thead>
-      {games.map((game) => (
-          <div key={game.id}>
-            <tr>
-              <td id="title">{game.name}</td>
-              <td>{game.rating}</td>
-              <td>
-                {game.tags.slice(0,5).map((tag) => (
-                  <ul key={tag.name}>
+        <tr>
+            <td id="title">{game.name}</td>
+            <td>{game.rating}</td>
+            <td>
+            {genres.slice(0,5).map((genre) => (
+                 <ul key={genre.name}>
+                    {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
+                 </ul>
+            ))}
+            </td>
+            <td>
+            {tags.slice(0,5).map((tag) => (
+                 <ul key={tag.name}>
                     {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
-                  </ul>
-                ))}
-              </td>
-              <th>
-                <img src={game.background_image} />
-              </th>
-            </tr>
-          </div>
-        ))}
+                 </ul>
+            ))}
+            </td>
+        </tr>
+        <body>
+            <p dangerouslySetInnerHTML={{__html: game.description}}></p>
+        </body>
     </div>
   );
 }
 
-export default GamesPage;
+export default DetailsPage;

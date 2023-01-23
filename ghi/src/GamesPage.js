@@ -1,12 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, NavLink } from "react-router-dom";
 import "./GamesPage.css";
 
 function GamesPage() {
   const [games, setGames] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams([]);
-  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     getData();
@@ -23,7 +22,6 @@ function GamesPage() {
       const query = encodeURIComponent(searchParams.get("search"))
       const response = await fetch(`http://localhost:8000/api/games?search=${query}`);
       const data = await response.json();
-      // console.log(data.results[0].name)
       setGames(data.results);
     }
   };
@@ -50,24 +48,25 @@ function GamesPage() {
             <th>Title</th>
             <th>Rating</th>
             <th>Tags</th>
-            {/* <th>{games[0]}</th> */}
           </tr>
         </thead>
       {games.map((game) => (
           <div key={game.id}>
             <tr>
-              <td id="title">{game.name}</td>
+              <td id="title">
+                <NavLink to={'/games/' + game.id}>{game.name}</NavLink>
+              </td>
               <td>{game.rating}</td>
               <td>
-                {game.tags.slice(0,5).map((tag) => (
+                {game.tags.slice(0,3).map((tag) => (
                   <ul key={tag.name}>
-                    {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
+                    {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : 'Russian'}
                   </ul>
                 ))}
               </td>
-              <th>
+              {/* <th>
                 <img src={game.background_image} />
-              </th>
+              </th> */}
             </tr>
           </div>
         ))}

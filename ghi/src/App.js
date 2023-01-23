@@ -6,6 +6,8 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import Logout from './Logout';
 import GamesPage from "./GamesPage";
+import DetailsPage from "./DetailsPage";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/logout" element={<Logout/>}/>
             <Route path="/games" element={<GamesPage />} />
+            <Route path="/games/:id" element={<DetailsPage />} />
         </Routes>
       </div>
       </AuthProvider>

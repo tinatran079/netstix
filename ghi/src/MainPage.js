@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, NavLink } from "react-router-dom";
 
 function MainPage() {
     const [games, setGames] = useState([]);
@@ -32,7 +32,9 @@ function MainPage() {
       {games.map((game) => (
           <div key={game.id}>
             <tr>
-              <td id="title">{game.name}</td>
+              <td id="title">
+                <NavLink to={'/games/' + game.id}>{game.name}</NavLink>
+              </td>
               <td>{game.rating}</td>
               <td>
                 {game.tags.slice(0,3).map((tag) => (
