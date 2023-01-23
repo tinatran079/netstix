@@ -43,7 +43,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             subject VARCHAR(255) NOT NULL,
             description TEXT NOT NULL,
-            user_id INTEGER NOT NULL REFERENCES Users("id") ON DELETE CASCADE,
+            account_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE,
             game_id INTEGER NOT NULL,
             game_title VARCHAR(255) NOT NULL
         );
