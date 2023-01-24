@@ -14,12 +14,30 @@ export async function getTokenInternal() {
     });
     if (response.ok) {
       const data = await response.json();
+      console.log(data)
       internalToken = data.access_token;
       return internalToken;
     }
   } catch (e) {}
   return false;
 }
+
+export async function getAccountId() {
+  const url = `${process.env.REACT_APP_GAMES_API_HOST}/token`;
+  try {
+    const response = await fetch(url, {
+      credentials: "include",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data)
+     const accountinformation = data.account.id;
+      return accountinformation;
+    }
+  } catch (e) {}
+  return false;
+}
+
 
 function handleErrorMessage(error) {
   if ("error" in error) {
