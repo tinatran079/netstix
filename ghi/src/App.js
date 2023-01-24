@@ -7,7 +7,7 @@ import Nav from './Nav';
 import Logout from './Logout';
 import GamesPage from "./GamesPage";
 import DetailsPage from "./DetailsPage";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
