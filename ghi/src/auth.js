@@ -30,9 +30,7 @@ export async function getAccountId() {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
-     const accountinformation = data.account.id;
-      return accountinformation;
+      return data.account.id;
     }
   } catch (e) {}
   return false;

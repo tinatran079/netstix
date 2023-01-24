@@ -7,8 +7,9 @@ import ReviewForm from "./ReviewForm";
 function DetailsPage() {
     const [game, setGame] = useState([]);
     const [tags, setTags] = useState([]);
-    const [screenshots, setScreenshots] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [screenshots, setScreenshots] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const { id } = useParams();
     const [index, setIndex] = React.useState(0);
     const delay = 2500;
@@ -51,17 +52,20 @@ function DetailsPage() {
     const getScreenshots = async () => {
       const response = await fetch(`http://localhost:8000/api/games/${id}/screenshots`);
       const data = await response.json();
-      setScreenshots(data.results)
+      setScreenshots(data.results);
+    }
+
+    const getReviews = async () => {
+      const response = await fetch(`http://localhost:8000/api/reviews`);
+      const data = await response.json();
+      setReviews(data.reviews);
     }
 
     const getData = async () => {
         getGame();
         getScreenshots();
+        getReviews();
     };
-
-    const postReview = () => {
-
-    }
 
   return (
     <div >
@@ -114,8 +118,17 @@ function DetailsPage() {
             </td>
         </tr>
         <body>
-          <ReviewForm />
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
+          <h1>Reviews</h1>
+          <ReviewForm />
+          {reviews.filter((review) => review.game_id === game.id).map((rev) => (
+            <div>
+              <tr>
+                <th>{rev.subject}</th>
+                <th>{rev.description}</th>
+              </tr>
+            </div>
+          ))}
         </body>
     </div>
   );
