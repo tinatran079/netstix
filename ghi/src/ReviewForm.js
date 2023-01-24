@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useToken } from './auth';
+import { getAccountId, useToken, } from './auth';
+
 
 const ReviewForm = () => {
   const  [token]  = useToken()
   // #console.log(token.access_token)
+  const account_id = getAccountId()
   const [formData, setFormData] = useState({
     subject: '',
     description: '',
-    account_id:5,
+    account_id:account_id,
     game_id:3796,
     game_title:'test',
 
@@ -45,6 +47,8 @@ const ReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(token)
+      console.log(account_id)
+
     const ReviewUrl = 'http://localhost:8000/api/reviews';
     const fetchConfig = {
       method: "post",
@@ -84,10 +88,10 @@ return (
               <input onChange={handleFormChange} value={formData.description} placeholder="Leave a review!" required type="text" name="description" className="form-control" />
               <label htmlFor="description">description</label>
             </div>
-              <div className="form-floating mb-3">
+              {/* <div className="form-floating mb-3">
               <input onChange={handleFormChange} value={formData.account_id} placeholder="Leave!" required type="number" name="Account Id" className="form-control" />
               <label htmlFor="Account Id">Account Id</label>
-            </div>
+            </div> */}
 
   <div className="form-floating mb-3">
               <input onChange={handleFormChange} value={formData.game_id} placeholder="Lea a review!" required type="number" name="Game Id" className="form-control" />
