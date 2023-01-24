@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useToken } from "./auth";
+import "./login.css"
 
 function LoginForm() {
     const [token, login] = useToken();
@@ -21,12 +22,12 @@ function LoginForm() {
 
   }
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
+    <div className="center">
+      <div className="">
         <div className="shadow p-4 mt-4">
           <h1>Login</h1>
           <form onSubmit={handleSubmit} id="login-form">
-            <div className="form-floating mb-3">
+            <div className="txt_field">
               <input
                 onChange={handleEmailChange}
                 value={email}
@@ -38,18 +39,18 @@ function LoginForm() {
               />
               <label htmlFor="Email">Email</label>
             </div>
-            <div className="form-floating mb-3">
+            <div className="txt_field">
               <input
                 onChange={handlePasswordChange}
                 value={password}
-                type="password"
+                type="password" required
                 name="password"
                 id="password"
                 className="form-control"
               />
-              <label htmlFor="password">Password</label>
+              <label>Password</label>
             </div>
-            <button className="btn btn-primary">Login</button>
+            <input type="submit" value="Login"/>
           </form>
         </div>
       </div>
