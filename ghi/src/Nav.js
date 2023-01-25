@@ -53,7 +53,6 @@ const [username, setUsername] = useState("");
               placeholder="Search games"
               name="search"
           />
-          <button type="submit">Search</button>
         </form>
       </h2>
       </div>
