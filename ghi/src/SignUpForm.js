@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useToken } from "./auth";
+import './SignUp.css'
 
 
 function SignUpForm() {
@@ -27,12 +28,12 @@ function SignUpForm() {
     }
 
     return (
-        <div className="row">
-        <div className="offset-3 col-6">
+        <div className="center">
+        <div className="">
             <div className="shadow p-4 mt-4">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit} id="login-form">
-                <div className="form-floating mb-3">
+                <div className="txt_field">
                 <input
                     onChange={handleUsernameChange}
                     value={username}
@@ -44,7 +45,7 @@ function SignUpForm() {
                 />
                 <label htmlFor="username">Username</label>
                 </div>
-                <div className="form-floating mb-3">
+                <div className="txt_field">
                 <input
                     onChange={handlePasswordChange}
                     value={password}
@@ -56,7 +57,7 @@ function SignUpForm() {
                 />
                 <label htmlFor="username">Password</label>
                 </div>
-                <div className="form-floating mb-3">
+                <div className="txt_field">
                 <input
                     onChange={handleEmailChange}
                     value={email}
@@ -68,7 +69,7 @@ function SignUpForm() {
                 />
                 <label htmlFor="email">Email</label>
                 </div>
-                <button className="btn btn-primary">Sign Up</button>
+                <input type="submit" value="Signup"/>
             </form>
             </div>
         </div>
