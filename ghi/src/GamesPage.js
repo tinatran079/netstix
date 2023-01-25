@@ -31,7 +31,7 @@ function GamesPage() {
         <div className="row">
           {games.map((game) => (
           <Card style={{ width: "20rem"}} key={game.id} className="cards">
-            <><navLink>to={'/games/' + game.id} <Card.Img variant="top" src={game.background_image} /> </navLink>
+            <><NavLink to={'/games/' + game.id}> <Card.Img variant="top" src={game.background_image} /> </NavLink>
             <Card.Body>
               <Card.Title>
                 <NavLink to={'/games/' + game.id}> {game.name} </NavLink>
