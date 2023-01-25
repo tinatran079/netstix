@@ -40,10 +40,10 @@ function MainPage() {
             <Card.Body>
               <Card.Title>
                 <NavLink to={'/games/' + game.id}> {game.name} </NavLink>
-                {game.rating}
                 </Card.Title>
+                 <Card.Text> {game.rating} / 5.00 </Card.Text>
               {game.tags.slice(0,3).map((tag) => (
-                <Card.Text key={tag.name}>{tag.name}</Card.Text>
+                <Card.Text key={tag.name}>{/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}</Card.Text>
               ))}
             </Card.Body></>
           </Card>
@@ -51,5 +51,4 @@ function MainPage() {
         </div>
   )
 }
-
 export default MainPage;

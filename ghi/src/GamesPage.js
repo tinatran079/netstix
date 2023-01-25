@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams, NavLink } from "react-router-dom";
+import Card from 'react-bootstrap/Card'
 import "./GamesPage.css";
 
 function GamesPage() {
@@ -27,51 +28,22 @@ function GamesPage() {
   };
 
   return (
-    <div>
-      <h2>
-        <form action="/games" method="get">
-          <label htmlFor="header-search">
-              <span className="visually-hidden">Search games</span>
-          </label>
-          <input
-              type="text"
-              id="header-search"
-              placeholder="Search games"
-              name="search"
-          />
-          <button type="submit">Search</button>
-        </form>
-      </h2>
-      <h1>List of games</h1>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Rating</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-      {games.map((game) => (
-          <div key={game.id}>
-            <tr>
-              <td id="title">
-                <NavLink to={'/games/' + game.id}>{game.name}</NavLink>
-              </td>
-              <td>{game.rating}</td>
-              <td>
-                {game.tags.slice(0,3).map((tag) => (
-                  <ul key={tag.name}>
-                    {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : 'Russian'}
-                  </ul>
-                ))}
-              </td>
-              {/* <th>
-                <img src={game.background_image} />
-              </th> */}
-            </tr>
-          </div>
-        ))}
-    </div>
-  );
+        <div className="row">
+          {games.map((game) => (
+          <Card style={{ width: "20rem"}} key={game.id} className="cards">
+            <><navLink>to={'/games/' + game.id} <Card.Img variant="top" src={game.background_image} /> </navLink>
+            <Card.Body>
+              <Card.Title>
+                <NavLink to={'/games/' + game.id}> {game.name} </NavLink>
+                </Card.Title>
+                 <Card.Text> {game.rating} / 5.00 </Card.Text>
+              {game.tags.slice(0,3).map((tag) => (
+                <Card.Text key={tag.name}>{/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}</Card.Text>
+              ))}
+            </Card.Body></>
+          </Card>
+          ))}
+        </div>
+  )
 }
-
 export default GamesPage;
