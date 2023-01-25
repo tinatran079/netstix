@@ -42,8 +42,8 @@ const [username, setUsername] = useState("");
         {username ? `Welcome, ${username}` : ""}
         </div>
         <div>
-      <h2>
-        <form action="/games" method="get">
+
+        <form className="d-flex" action="/games" method="get">
           <label htmlFor="header-search" className="center">
               <span className="visually-hidden">Search games</span>
           </label>
@@ -54,7 +54,7 @@ const [username, setUsername] = useState("");
               name="search"
           />
         </form>
-      </h2>
+
       </div>
     </nav>
   )
