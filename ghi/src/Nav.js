@@ -1,10 +1,21 @@
 import { NavLink } from 'react-router-dom';
-import {useState} from 'react';
-import { useToken } from './auth'
-
+import {useState, useEffect} from 'react';
+import { useToken, getUser } from './auth'
 
 
 function Nav() {
+const [username, setUsername] = useState("");
+
+ useEffect(() => {
+      getUsername();
+      }, []);
+      const getUsername = async () => {
+        const username = await getUser()
+        setUsername(username);
+        console.log(username)
+    }
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -14,13 +25,22 @@ function Nav() {
         <li className="nav-item">
             <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </li>
-        <li className="nav-item">
-            <NavLink className="nav-link" to="/login">Login</NavLink>
-        </li>
-        <li className="nav-item">
+        <div>
+          {username
+          ?
+           <li className="nav-item">
             <NavLink className="nav-link" to="/logout">Logout</NavLink>
         </li>
+        :
+         <li className="nav-item">
+            <NavLink className="nav-link" to="/login">Login</NavLink>
+        </li>
+        }
+        </div>
         </ul>
+        <div>
+        {username ? `Welcome, ${username}` : ""}
+        </div>
         <div>
       <h2>
         <form action="/games" method="get">
