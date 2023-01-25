@@ -48,6 +48,7 @@ const [username, setUsername] = useState("");
               <span className="visually-hidden">Search games</span>
           </label>
           <input
+              className='center'
               type="text"
               id="header-search"
               placeholder="Search games"
