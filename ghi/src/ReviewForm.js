@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAccountId, useToken, } from './auth';
+import { getAccountId, useToken, getUser } from './auth';
 import { useParams } from 'react-router-dom';
 
 
@@ -7,6 +7,7 @@ const ReviewForm = () => {
     const [game, setGame] = useState([])
     const [token]  = useToken()
     const [accountId, setAccountId] = useState(0)
+    const [username, setUsername] = useState("");
     const { id } = useParams();
     const [formData, setFormData] = useState({
         subject: '',
@@ -14,11 +15,13 @@ const ReviewForm = () => {
         account_id: 0,
         game_id: 0,
         game_title: '',
+        username: '',
   })
 
       useEffect(() => {
         getAccountInfo();
         getGame();
+        getUsername();
       }, []);
 
     const getAccountInfo = async () => {
@@ -31,6 +34,13 @@ const ReviewForm = () => {
         const data = await response.json();
         setGame(data)
     }
+
+     const getUsername = async () => {
+        const username = await getUser()
+        setUsername(username);
+        console.log(username)
+    }
+
 
   const handleFormChange = (e) => {
     setFormData({
@@ -45,6 +55,7 @@ const ReviewForm = () => {
     formData.account_id = accountId;
     formData.game_id = game.id;
     formData.game_title = game.name;
+    formData.username = username
     console.log(formData)
     const ReviewUrl = 'http://localhost:8000/api/reviews';
     const fetchConfig = {
@@ -65,6 +76,7 @@ const ReviewForm = () => {
         account_id: formData.account_id,
         game_id: formData.game_id,
         game_title: formData.game_title,
+        username: formData.username
       });
     }
   }

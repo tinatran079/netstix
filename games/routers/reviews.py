@@ -13,6 +13,7 @@ class Review(BaseModel):
     account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewIn(BaseModel):
     subject: str
@@ -20,6 +21,7 @@ class ReviewIn(BaseModel):
     account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewOut(BaseModel):
     id: int
@@ -28,6 +30,7 @@ class ReviewOut(BaseModel):
     account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewsOut(BaseModel):
     reviews: list[ReviewOut]

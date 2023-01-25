@@ -137,7 +137,7 @@ function DetailsPage() {
           <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
              <Card style={{ width: "20rem"}} key={rev.id} className="cards">
-              <Card.Header>{username}</Card.Header>
+              <Card.Header>{rev.username}</Card.Header>
                 <Card.Body>
               <Card.Title>
                 {rev.subject}
