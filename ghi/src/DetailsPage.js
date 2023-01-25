@@ -3,8 +3,12 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import "./DetailsPage.css";
 import ReviewForm from "./ReviewForm";
+import { getUser } from "./auth";
+import Card from 'react-bootstrap/Card'
+
 
 function DetailsPage() {
+    const [username, setUsername] = useState("");
     const [game, setGame] = useState([]);
     const [tags, setTags] = useState([]);
     const [genres, setGenres] = useState([]);
@@ -38,7 +42,15 @@ function DetailsPage() {
 
     useEffect(() => {
         getData();
+        getUsername();
     }, []);
+
+
+    const getUsername = async () => {
+        const username = await getUser()
+        setUsername(username);
+        console.log(username)
+    }
 
     const getGame = async () => {
       const response = await fetch(`http://localhost:8000/api/games/${id}`);
@@ -118,17 +130,23 @@ function DetailsPage() {
             </td>
         </tr>
         <body>
+
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
           <h1>Reviews</h1>
           <ReviewForm />
+          <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
-            <div>
-              <tr>
-                <th>{rev.subject}</th>
-                <th>{rev.description}</th>
-              </tr>
-            </div>
+             <Card style={{ width: "20rem"}} key={rev.id} className="cards">
+              <Card.Header>{username}</Card.Header>
+                <Card.Body>
+              <Card.Title>
+                {rev.subject}
+              </Card.Title>
+              <Card.Text> {rev.description}</Card.Text>
+              </Card.Body>
+              </Card>
           ))}
+          </div>
         </body>
     </div>
   );

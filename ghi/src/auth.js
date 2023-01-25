@@ -36,6 +36,20 @@ export async function getAccountId() {
   return false;
 }
 
+export async function getUser() {
+  const url = `${process.env.REACT_APP_GAMES_API_HOST}/token`;
+  try {
+    const response = await fetch(url, {
+      credentials: "include",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data.account.username;
+    }
+  } catch (e) {}
+  return false;
+}
+
 
 function handleErrorMessage(error) {
   if ("error" in error) {
