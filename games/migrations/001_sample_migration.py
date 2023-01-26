@@ -17,24 +17,6 @@ steps = [
         """
     ],
 
-    [
-        # "Up" SQL statement
-        """
-        CREATE TABLE Users (
-            id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(100) NOT NULL,
-            password VARCHAR(100) NOT NULL,
-            email VARCHAR(100) NOT NULL,
-            account_id INTEGER NOT NULL REFERENCES Accounts("id") ON DELETE CASCADE
-
-        );
-        """,
-        # "Down" SQL statement
-        """
-        DROP TABLE Users;
-        """
-    ],
-
 
     [
         # "Up" SQL statement

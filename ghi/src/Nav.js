@@ -18,7 +18,6 @@ function Nav() {
         console.log(username)
     }
 
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -66,5 +65,4 @@ function Nav() {
     </nav>
   )
 }
-
 export default Nav;
