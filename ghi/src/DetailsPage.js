@@ -81,34 +81,9 @@ function DetailsPage() {
 
   return (
     <div >
-        <h1>Video Games :&#41;</h1>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Rating</th>
-            <th>Genre</th>
-            <th>Tags</th>
-            <th>Screenshots</th>
-          </tr>
-        </thead>
-        <tr>
-            <td id="title">{game.name}</td>
-            <td>{game.rating}</td>
-            <td>
-              {genres.slice(0,5).map((genre) => (
-                <ul key={genre.name}>
-                  {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
-                </ul>
-              ))}
-            </td>
-            <td>
-              {tags.slice(0,5).map((tag) => (
-                <ul key={tag.name}>
-                  {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
-                </ul>
-              ))}
-            </td>
-            <td className="slideshow">
+      <h1>{game.name}</h1>
+      <div className="container">
+        <div className="slideshow">
               <div className="slideshowSlider" style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                 {screenshots.map((ss, index) => (
                   <div className="slide" key={index}>
@@ -127,13 +102,29 @@ function DetailsPage() {
                   ></div>
                 ))}
               </div>
-            </td>
-        </tr>
-        <body>
+            </div>
+            <div>
+            <h3>Tags</h3>
+              {genres.slice(0,5).map((genre) => (
+                <ul key={genre.name}>
+                  {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
+                </ul>
+              ))}
 
+              {tags.slice(0,5).map((tag) => (
+                <ul key={tag.name}>
+                  {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ''}
+                </ul>
+              ))}
+            </div>
+    </div>
+
+        <h3>Rating: {game.rating} </h3>
+        <div>
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
-          <h1>Reviews</h1>
+        </div>
           <ReviewForm />
+        <h1>Reviews</h1>
           <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
              <Card style={{ width: "20rem"}} key={rev.id} className="cards">
@@ -147,7 +138,6 @@ function DetailsPage() {
               </Card>
           ))}
           </div>
-        </body>
     </div>
   );
 }
