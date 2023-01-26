@@ -3,7 +3,7 @@ import { getAccountId, useToken, getUser } from './auth';
 import { useParams } from 'react-router-dom';
 
 
-const ReviewForm = () => {
+  function ReviewForm ({getReviews})  {
     const [game, setGame] = useState([])
     const [token]  = useToken()
     const [accountId, setAccountId] = useState(0)
@@ -66,7 +66,6 @@ const ReviewForm = () => {
         Authorization: `Bearer ${token}`
       },
     };
-
     const response = await fetch(ReviewUrl, fetchConfig);
     if (response.ok) {
       const newReview = await response.json();
@@ -79,6 +78,8 @@ const ReviewForm = () => {
         username: formData.username
       });
     }
+    getReviews()
+
   }
 
 return (

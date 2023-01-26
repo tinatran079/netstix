@@ -124,7 +124,7 @@ function DetailsPage() {
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
         </div>
         <h1>Reviews</h1>
-          <h2>{username ? <ReviewForm /> : <NavLink className="navlink" to="/signup">Sign in to Create a Review!</NavLink> }</h2>
+          <h2>{username ? <ReviewForm getReviews = {getReviews}/> : <NavLink className="navlink" to="/signup">Sign in to Create a Review!</NavLink> }</h2>
           <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
              <Card style={{ width: "20rem"}} key={rev.id} className="cards">
