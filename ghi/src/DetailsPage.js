@@ -1,9 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useNavigate } from "react";
+import { Navigate, NavLink, useParams } from 'react-router-dom';
 import "./DetailsPage.css";
 import ReviewForm from "./ReviewForm";
-import { getUser } from "./auth";
+import { getUser, useAuthContext } from "./auth";
 import Card from 'react-bootstrap/Card'
 
 
@@ -123,8 +123,8 @@ function DetailsPage() {
         <div>
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
         </div>
-          <ReviewForm />
         <h1>Reviews</h1>
+          <h2>{username ? <ReviewForm /> : <NavLink className="navlink" to="/signup">Sign in to Create a Review!</NavLink> }</h2>
           <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
              <Card style={{ width: "20rem"}} key={rev.id} className="cards">

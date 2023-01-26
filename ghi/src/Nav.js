@@ -4,11 +4,19 @@ import { getUser, useAuthContext } from './auth'
 
 
 function Nav() {
-  const [username, setUsername] = useState("FIX THIS LATER");
+  const [username, setUsername] = useState("");
   const { token, setToken } = useAuthContext();
 
   useEffect(() => {
+    getUsername()
   }, []);
+
+
+   const getUsername = async () => {
+        const username = await getUser()
+        setUsername(username);
+        console.log(username)
+    }
 
 
   return (
@@ -17,11 +25,13 @@ function Nav() {
         <li className="nav-item">
             <NavLink className="nav-link" to="/">Main Page</NavLink>
         </li>
+          {!token
+          ?
         <li className="nav-item">
             <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </li>
-        <div>
-
+            :
+            ""}
           {!token
           ?
           <li className="nav-item">
@@ -33,7 +43,6 @@ function Nav() {
           </li>
 
           }
-        </div>
         </ul>
         <div>
         {token ? `Welcome, ${username}` : ""}

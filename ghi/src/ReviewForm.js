@@ -89,13 +89,13 @@ return (
           <form onSubmit={handleSubmit} id="create-Review-form">
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} value={formData.subject} placeholder="Review Title" required type="text" name="subject" className="form-control" />
-              <label htmlFor="subject">Title</label>
+              <h2>Title</h2>
+              <input onChange={handleFormChange} value={formData.subject} required type="text" name="subject" className="form-control" />
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} value={formData.description} placeholder="Leave a review!" required type="text" name="description" className="form-control" />
-              <label htmlFor="description">Description</label>
+              <h2>Description</h2>
+              <input onChange={handleFormChange} value={formData.description} required type="text" name="description" className="form-control" />
             </div>
 
             <button className="btn btn-dark">Create</button>
