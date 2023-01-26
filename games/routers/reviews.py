@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 from queries.reviews import ReviewQueries
+from authenticator import authenticator
+
 
 router = APIRouter()
 
@@ -8,24 +10,27 @@ class Review(BaseModel):
     id: int
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewIn(BaseModel):
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewOut(BaseModel):
     id: int
     subject: str
     description: str
-    user_id: int
+    account_id: int
     game_id: int
     game_title: str
+    username: str
 
 class ReviewsOut(BaseModel):
     reviews: list[ReviewOut]
@@ -33,7 +38,8 @@ class ReviewsOut(BaseModel):
 @router.post("/api/reviews", response_model=ReviewOut)
 def create_review(
     review: ReviewIn,
-    queries: ReviewQueries = Depends()
+    queries: ReviewQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return queries.create_review(review)
 

@@ -19,3 +19,24 @@ td {
 #title {
   margin: 20px;
 }
+
+img {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+
+.cards{
+    margin: 10px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cards:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
