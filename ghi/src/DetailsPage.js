@@ -81,7 +81,8 @@ function DetailsPage() {
 
   return (
     <div >
-        <h1>{game.name}</h1>
+      <h1>{game.name}</h1>
+      <div className="container">
         <div className="slideshow">
               <div className="slideshowSlider" style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                 {screenshots.map((ss, index) => (
@@ -102,9 +103,8 @@ function DetailsPage() {
                 ))}
               </div>
             </div>
-            <h2>Rating: {game.rating} </h2>
-
             <div>
+            <h3>Tags</h3>
               {genres.slice(0,5).map((genre) => (
                 <ul key={genre.name}>
                   {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ''}
@@ -117,12 +117,14 @@ function DetailsPage() {
                 </ul>
               ))}
             </div>
+    </div>
 
+        <h3>Rating: {game.rating} </h3>
         <div>
           <p dangerouslySetInnerHTML={{__html: game.description}}></p>
         </div>
-          <h1>Reviews</h1>
           <ReviewForm />
+        <h1>Reviews</h1>
           <div className = "row">
           {reviews.filter((review) => review.game_id === game.id).map((rev) => (
              <Card style={{ width: "20rem"}} key={rev.id} className="cards">
