@@ -12,18 +12,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter>
-    <Nav />
-    <AuthProvider>
-      <div className="container">
-        <Routes>
-            <Route path="/" element={<MainPage/>}/>
-            <Route path="/signup" element={<SignUpForm/>}/>
-            <Route path="/login" element={<LoginForm/>}/>
-            <Route path="/logout" element={<Logout/>}/>
-            <Route path="/games" element={<GamesPage />} />
-            <Route path="/games/:id" element={<DetailsPage />} />
-        </Routes>
-      </div>
+      <AuthProvider>
+        <Nav />
+        <div className="container">
+          <Routes>
+              <Route path="/" element={<MainPage/>}/>
+              <Route path="/signup" element={<SignUpForm/>}/>
+              <Route path="/login" element={<LoginForm/>}/>
+              <Route path="/logout" element={<Logout/>}/>
+              <Route path="/games" element={<GamesPage />} />
+              <Route path="/games/:id" element={<DetailsPage />} />
+          </Routes>
+        </div>
       </AuthProvider>
     </BrowserRouter>
   );

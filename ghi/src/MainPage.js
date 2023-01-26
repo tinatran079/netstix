@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams, NavLink } from "react-router-dom";
+import { getUser } from './auth'
+
 import Card from 'react-bootstrap/Card';
 import "./MainPage.css"
 
@@ -13,7 +15,8 @@ function MainPage() {
     const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
-    getData();
+      getData();
+      getUser();
     }, []);
 
   const getData = async () => {

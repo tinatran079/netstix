@@ -1,19 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import { useToken, getUser } from './auth'
+import { useState, useEffect } from 'react';
+import { getUser, useAuthContext } from './auth'
 
 
 function Nav() {
-const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("FIX THIS LATER");
+  const { token, setToken } = useAuthContext();
 
- useEffect(() => {
-      getUsername();
-      }, []);
-      const getUsername = async () => {
-        const username = await getUser()
-        setUsername(username);
-        console.log(username)
-    }
+  useEffect(() => {
+  }, []);
 
 
   return (
@@ -26,20 +21,22 @@ const [username, setUsername] = useState("");
             <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </li>
         <div>
-          {username
+
+          {!token
           ?
-           <li className="nav-item">
+          <li className="nav-item">
+              <NavLink className="nav-link" to="/login">Login</NavLink>
+          </li>
+          :
+          <li className="nav-item">
             <NavLink className="nav-link" to="/logout">Logout</NavLink>
-        </li>
-        :
-         <li className="nav-item">
-            <NavLink className="nav-link" to="/login">Login</NavLink>
-        </li>
-        }
+          </li>
+
+          }
         </div>
         </ul>
         <div>
-        {username ? `Welcome, ${username}` : ""}
+        {token ? `Welcome, ${username}` : ""}
         </div>
         <div>
 

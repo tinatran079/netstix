@@ -1,32 +1,31 @@
-import React, { useState } from "react";
-import { useToken } from "./auth";
+import React, { useState, useEffect  } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToken, getUser } from "./auth";
 import "./login.css"
 
 function LoginForm() {
-    const [token, login] = useToken();
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [token, login] = useToken();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-    const handleEmailChange = (e) => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-    const handlePasswordChange = (e) => {
+
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  async function handleSubmit(e)  {
+  async function HandleSubmit(e)  {
     e.preventDefault();
     login(email, password);
-
-
-
   }
   return (
     <div className="center">
       <div className="">
         <div className="shadow p-4 mt-4">
           <h1>Login</h1>
-          <form onSubmit={handleSubmit} id="login-form">
+          <form onSubmit={HandleSubmit} id="login-form">
             <div className="txt_field">
               <input
                 onChange={handleEmailChange}

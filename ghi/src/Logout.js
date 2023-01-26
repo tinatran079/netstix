@@ -5,7 +5,6 @@ function Logout(){
     const [token, setToken ,logout] = useToken();
     const navigate = useNavigate();
     logout(token);
-    navigate('/');
 }
 
 export default Logout;
