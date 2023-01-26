@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useToken, getUser } from "./auth";
 import "./login.css"
 
@@ -50,6 +50,8 @@ function LoginForm() {
               <label>Password</label>
             </div>
             <input type="submit" value="Login"/>
+          <h4>
+            <NavLink classname ="nav-link" to="/signup"> Don't have an account yet? Sign Up! </NavLink></h4>
           </form>
         </div>
       </div>

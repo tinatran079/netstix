@@ -9,7 +9,7 @@ function Nav() {
 
   useEffect(() => {
     getUsername()
-  }, []);
+  }, [token]);
 
 
    const getUsername = async () => {
