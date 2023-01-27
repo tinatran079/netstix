@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 from queries.reviews import ReviewQueries
 from routers.reviews import ReviewIn, ReviewOut
+from routers.accounts import get_token
 from main import app
 import json
 
@@ -15,22 +16,16 @@ class ReviewQueriesMock:
         return ReviewOut(id = 1, **review.dict())
 
 def test_get_reviews():
-    # Arrange
+
     app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
-
-    # Act
     res = client.get('/api/reviews')
-
-    # Assert
     assert res.status_code == 200
     assert res.json() == {'reviews': []}
-
-    # Cleanup
     app.dependency_overrides = {}
 
 
 def test_create_reviews_protection():
-    # Arrange
+
     app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
     review_body = {
         "subject": "awesome",
@@ -41,13 +36,19 @@ def test_create_reviews_protection():
         "username": "gamer11",
 
     }
-
-    # Act
     res = client.post('/api/reviews', json.dumps(review_body))
-
-   # Assert
     assert res.status_code == 401
-
-
-  # Cleanup
     app.dependency_overrides = {}
+
+class token_mock:
+    def get_token(self):
+        return []
+
+def test_token():
+
+    app.dependency_overrides[get_token] = token_mock
+    res = client.get("/token")
+    assert res.status_code == 200
+
+
+
