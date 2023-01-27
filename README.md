@@ -6,7 +6,9 @@
 * Nicolas Gallo
 
 # Design
--[Wireframe](docs/NetStixWireframe.png)
+[Wireframe](docs/NetStixWireframe.png)
+
+[Models](docs/SQLModels.png)
 
 
 
