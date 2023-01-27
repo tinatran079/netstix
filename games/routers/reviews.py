@@ -6,6 +6,7 @@ from authenticator import authenticator
 
 router = APIRouter()
 
+
 class Review(BaseModel):
     id: int
     subject: str
@@ -15,6 +16,7 @@ class Review(BaseModel):
     game_title: str
     username: str
 
+
 class ReviewIn(BaseModel):
     subject: str
     description: str
@@ -22,6 +24,7 @@ class ReviewIn(BaseModel):
     game_id: int
     game_title: str
     username: str
+
 
 class ReviewOut(BaseModel):
     id: int
@@ -32,8 +35,10 @@ class ReviewOut(BaseModel):
     game_title: str
     username: str
 
+
 class ReviewsOut(BaseModel):
     reviews: list[ReviewOut]
+
 
 @router.post("/api/reviews", response_model=ReviewOut)
 def create_review(
@@ -43,13 +48,13 @@ def create_review(
 ):
     return queries.create_review(review)
 
+
 @router.get("/api/reviews", response_model=ReviewsOut)
 def get_reviews(
     queries: ReviewQueries = Depends(),
 ):
-    return {
-        "reviews": queries.get_reviews()
-    }
+    return {"reviews": queries.get_reviews()}
+
 
 @router.delete("/api/reviews/{review_id}", response_model=bool)
 def delete_review(

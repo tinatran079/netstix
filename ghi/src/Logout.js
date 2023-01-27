@@ -1,10 +1,10 @@
-import { useToken } from './auth';
-import { useNavigate } from 'react-router-dom';
+import { useToken } from "./auth";
+import { useNavigate } from "react-router-dom";
 
-function Logout(){
-    const [token, setToken ,logout] = useToken();
-    const navigate = useNavigate();
-    logout(token);
+function Logout() {
+  const [token, setToken, logout] = useToken();
+  const navigate = useNavigate();
+  logout(token);
 }
 
 export default Logout;

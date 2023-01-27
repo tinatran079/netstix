@@ -49,7 +49,6 @@ export async function getUser() {
   return null;
 }
 
-
 function handleErrorMessage(error) {
   if ("error" in error) {
     error = error.error;
@@ -90,7 +89,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export function useToken() {
   const { token, setToken } = useAuthContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchToken() {
@@ -108,7 +107,7 @@ export function useToken() {
       await fetch(url, { method: "delete", credentials: "include" });
       internalToken = null;
       setToken(null);
-      navigate('/')
+      navigate("/");
     }
   }
 
@@ -125,8 +124,7 @@ export function useToken() {
     if (response.ok) {
       const token = await getTokenInternal();
       setToken(token);
-      console.log(`TOKEN SET IN AUTH`)
-      navigate('/')
+      navigate("/");
       return;
     }
 
