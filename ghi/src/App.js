@@ -1,37 +1,31 @@
-import { useEffect, useState } from 'react';
-import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
+import { AuthProvider, useToken } from "./auth";
+import MainPage from "./MainPage";
+import Nav from "./Nav";
+import Logout from "./Logout";
+import GamesPage from "./GamesPage";
+import DetailsPage from "./DetailsPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);  
-
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/launch-details`;
-      console.log('fastapi url: ', url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
-
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
-    }
-    getData();
-  }, [])
-
-
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launch_info} />
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/games" element={<GamesPage />} />
+            <Route path="/games/:id" element={<DetailsPage />} />
+          </Routes>
+        </div>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
