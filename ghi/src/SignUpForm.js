@@ -71,7 +71,7 @@ function SignUpForm() {
                 <label htmlFor="email">Email</label>
                 </div>
                 <input type="submit" value="Signup"/>
-                 <h4><NavLink classname ="nav-link" to="/login"> Already have an account? Log in! </NavLink></h4>
+                 <h4><NavLink className ="nav-link" to="/login"> Already have an account? Log in! </NavLink></h4>
             </form>
             </div>
         </div>

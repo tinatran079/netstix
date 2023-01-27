@@ -51,7 +51,7 @@ function LoginForm() {
             </div>
             <input type="submit" value="Login"/>
           <h4>
-            <NavLink classname ="nav-link" to="/signup"> Don't have an account yet? Sign Up! </NavLink></h4>
+            <NavLink className ="nav-link" to="/signup"> Don't have an account yet? Sign Up! </NavLink></h4>
           </form>
         </div>
       </div>
