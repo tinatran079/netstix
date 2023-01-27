@@ -10,7 +10,7 @@
 
 [Models](docs/SQLModels.png)
 
-[API Integration](docs/integration.png)
+[Integration](docs/integration.png)
 
 
 
