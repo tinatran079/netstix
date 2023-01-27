@@ -86,7 +86,7 @@ Today, I worked on:
 
 We added review cards for each user to the details page with their corresponding username. We then configured the nav bar to show only the main page and the logout links when a user is logged in.
 
-# January 26, 20203
+# January 26, 2023
 Today, I worked on:
 
 * Removed users model and changes to the detail page
