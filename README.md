@@ -12,6 +12,8 @@
 
 [Integration](docs/integration.png)
 
+[Api Design](docs/api_design.md)
+
 
 
 # Intended Audience
