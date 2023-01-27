@@ -7,6 +7,7 @@
 
 # Design
 -[Wireframe](docs/NetStixWireframe.png)
+
 -[Models](docs/SQLModels.png)
 
 
