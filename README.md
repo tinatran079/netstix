@@ -6,4 +6,4 @@
 *Nicolas Gallo
 
 # Design
-<img src="/docs/NetstixWireframe.png" alt="Wireframe"/>
+<img src="/docs/NetStixWireframe.png" alt="Wireframe"/>
