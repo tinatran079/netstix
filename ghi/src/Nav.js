@@ -4,12 +4,19 @@ import { getUser, useAuthContext } from './auth'
 
 
 function Nav() {
-  const [username, setUsername] = useState("FIX THIS LATER");
+  const [username, setUsername] = useState("");
   const { token, setToken } = useAuthContext();
 
   useEffect(() => {
-  }, []);
+    getUsername()
+  }, [token]);
 
+
+   const getUsername = async () => {
+        const username = await getUser()
+        setUsername(username);
+        console.log(username)
+    }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -17,11 +24,13 @@ function Nav() {
         <li className="nav-item">
             <NavLink className="nav-link" to="/">Main Page</NavLink>
         </li>
+          {!token
+          ?
         <li className="nav-item">
             <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </li>
-        <div>
-
+            :
+            ""}
           {!token
           ?
           <li className="nav-item">
@@ -33,7 +42,6 @@ function Nav() {
           </li>
 
           }
-        </div>
         </ul>
         <div>
         {token ? `Welcome, ${username}` : ""}
@@ -57,5 +65,4 @@ function Nav() {
     </nav>
   )
 }
-
 export default Nav;
