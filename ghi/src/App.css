@@ -12,3 +12,16 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.background-color {
+  background-color: #24282f;
+  height: 100%;
+  width: 100%;
+}
+
+.card-title a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px;
+}

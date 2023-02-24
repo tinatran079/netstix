@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+.navbar-brand
+{
+  font-size: 33px !important;
+  padding: 10px;
+  font-family: 'Tilt Warp', cursive;
+}
+
+#header-search
+{
+    background-color: #585858;
+    color: black;
+    width: 600px;
+    padding-left: 10px;
+}
+
+#header-search:focus {
+    background-color: #fff;
+}
+
+#header-search::placeholder {
+    color: #f0e7e7;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.navbar {
+  height: 80px;
+  padding: 20px !important;
+  padding-top: 10px;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: bold !important;
+}

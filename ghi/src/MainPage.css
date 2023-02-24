@@ -1,8 +1,25 @@
 .cards {
-  margin: 10px 5px;
+  margin: 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
+  padding: 0px !important;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #2d2d2d !important;
   width: 100%;
+  border-radius:10px !important;
+  border: #282c34 !important;
+}
+
+h2 {
+  position: relative;
+  vertical-align: middle;
+  padding: 10px;
+  padding-left: 25px;
+  color: white;
+  margin: 0;
+  font-size: 47px !important;
+}
+
+.card-title a {
+  color: white;
+  text-decoration: none;
 }
