@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -11,17 +11,29 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.background-color {
+/* .background-color {
   background-color: #24282f;
   height: 100%;
   width: 100%;
-}
+} */
 
 .card-title a {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 22px;
+}
+
+body {
+  color: white !important;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  background-color: #24282f;
+  min-height: 100vh;
+  min-width: 100vw;
 }

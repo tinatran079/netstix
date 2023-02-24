@@ -1,5 +1,5 @@
 .cards {
-  margin: 10px 10px;
+  margin: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 0px !important;
   text-align: center;
@@ -7,19 +7,36 @@
   width: 100%;
   border-radius:10px !important;
   border: #282c34 !important;
+  margin-bottom: 1rem;
+  width: 20rem;
+}
+
+.cards img {
+  height: 80%;
+  object-fit: cover;
 }
 
 h2 {
   position: relative;
-  vertical-align: middle;
   padding: 10px;
   padding-left: 25px;
   color: white;
   margin: 0;
+  margin-bottom: 1rem;
   font-size: 47px !important;
 }
 
 .card-title a {
   color: white;
   text-decoration: none;
+}
+
+.main-container {
+  padding-left: 60px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.p {
+  font-weight: 100;
 }

@@ -12,6 +12,7 @@ function DetailsPage() {
   const [tags, setTags] = useState([]);
   const [genres, setGenres] = useState([]);
   const [screenshots, setScreenshots] = useState([]);
+  const [gameImage, setGameImage] = useState([]);
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
   const [index, setIndex] = React.useState(0);
@@ -56,6 +57,7 @@ function DetailsPage() {
     setGame(data);
     setTags(data.tags);
     setGenres(data.genres);
+    setGameImage(data.background_image)
   };
 
   const getScreenshots = async () => {
@@ -79,7 +81,7 @@ function DetailsPage() {
   };
 
   return (
-    <div>
+    <div className="details-page-container" style={{ backgroundImage: `url(${game.background_image})`}}>
       <h1>{game.name}</h1>
       <div className="container">
         <div className="slideshow">

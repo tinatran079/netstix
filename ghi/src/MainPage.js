@@ -34,8 +34,9 @@ function MainPage() {
   };
 
   return (
-    <div className="row">
-    <h2><strong><span>New and Trending</span></strong></h2>
+    <div className="row main-container">
+    <h2><strong>New and Trending</strong></h2>
+    <p>Check out our latest and most popular games below</p>
       {games.map((game) => (
         <Card style={{ width: "20rem" }} key={game.id} className="cards">
             <NavLink to={"/games/" + game.id} >

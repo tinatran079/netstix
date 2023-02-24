@@ -5,6 +5,7 @@ import { AuthProvider, useToken } from "./auth";
 import MainPage from "./MainPage";
 import './App.css';
 import Nav from "./Nav";
+import SideNavBar from "./SideNavBar";
 import Logout from "./Logout";
 import GamesPage from "./GamesPage";
 import DetailsPage from "./DetailsPage";
@@ -15,18 +16,19 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Nav />
-        <div className="background-color">
-        <div className="container">
+        {/* <div className="background-color"> */}
+        {/* <div className="container"> */}
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/sidebar" element={<SideNavBar />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/games" element={<GamesPage />} />
             <Route path="/games/:id" element={<DetailsPage />} />
           </Routes>
-        </div>
-        </div>
+        {/* </div> */}
+        {/* </div> */}
       </AuthProvider>
     </BrowserRouter>
   );
