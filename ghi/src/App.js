@@ -19,7 +19,7 @@ function App() {
         {/* <div className="background-color"> */}
         {/* <div className="container"> */}
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<SideNavBar />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/sidebar" element={<SideNavBar />} />
             <Route path="/login" element={<LoginForm />} />

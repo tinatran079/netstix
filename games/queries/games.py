@@ -28,3 +28,16 @@ class GamesQueries:
         }
         res = requests.get(f"https://api.rawg.io/api/games", params=params)
         return res.json()
+
+    def get_all_genres(self):
+        key = os.environ["API_KEY"]
+        res = requests.get(f"https://api.rawg.io/api/genres?key={key}")
+        return res.json()
+
+    def get_games_by_genre(self, id):
+        key = os.environ["API_KEY"]
+        res = requests.get(f"https://api.rawg.io/api/games?key={key}&genres={id}")
+        if res.status_code == 200:
+            return res.json()
+        else:
+            return None

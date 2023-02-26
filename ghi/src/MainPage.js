@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams, NavLink } from "react-router-dom";
 import { getUser } from "./auth";
-
+import SideNavBar from "./SideNavBar";
 import Card from "react-bootstrap/Card";
 import "./MainPage.css";
+
 
 function MainPage() {
   const [games, setGames] = useState([]);
