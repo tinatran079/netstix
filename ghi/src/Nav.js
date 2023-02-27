@@ -1,13 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUser, useAuthContext } from "./auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './Nav.css';
 
-function Nav() {
+function Nav({ onSearch }) {
   const [username, setUsername] = useState("");
   const { token, setToken } = useAuthContext();
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUsername();
@@ -18,28 +20,30 @@ function Nav() {
     setUsername(username);
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    navigate(`/search/${query}`);
+    onSearch(query);
+  }
+
   return (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
+  <nav className="navbar navbar-expand-lg navbar-custom">
   <div className="container-fluid" >
     <a className="navbar-brand" href="/">NETSTIX</a>
     <div className="d-flex justify-content-center">
-     <form className="d-flex" action="/games" method="get">
-        <div className="input-group">
-          <span className="input-group-text">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </span>
-          <label htmlFor="header-search" className="visually-hidden">
-            <span>Search games</span>
-          </label>
+      <form className="d-flex" onSubmit={handleSubmit}>
           <input
-            className="form-control"
-            type="text"
-            id="header-search"
-            placeholder="Search games"
-            name="search"
+            className="form-control me-2"
+            type="search"
+            placeholder="Search games..."
+            aria-label="Search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
           />
-        </div>
-      </form>
+          <button className="btn" type="submit">
+            Search
+          </button>
+        </form>
     </div>
     <div className="d-flex justify-content-end">
       <ul className="navbar-nav mb-2 mb-lg-0">
