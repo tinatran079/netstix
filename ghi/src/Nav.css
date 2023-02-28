@@ -50,7 +50,7 @@ input[type="search"] {
 }
 
 .form-control {
-  background-color: gray !important;
+  background-color: #333333 !important;
 }
 
 .form-control:hover,

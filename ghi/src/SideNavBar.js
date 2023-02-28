@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import "./SideNav.css";
+import actionIcon from './images/actionIcon.png';
+import fightingIcon from './images/fightingIcon.png';
+import chess from './images/chess.png';
+import compass from './images/compass.png';
+import diamond from './images/diamond.png';
+import edu from './images/edu.png';
+import flashCard from './images/flashCard.png';
+import cctv from './images/cctv.png';
+import coffee from './images/coffee.png';
+import house from './images/house.png';
+import joystick from './images/joystick.png';
+import multPlayer from './images/multPlayer.png';
+import numerology from './images/numerology.png';
+import racing from './images/racing.png';
+import football from './images/football.png';
+import solution from './images/solution.png';
+import target from './images/target.png';
+import wizard from './images/wizard.png';
+import run from './images/run.png';
 
 export default function SideNavBar() {
   const [genres, setGenres] = useState([]);
@@ -26,6 +45,27 @@ export default function SideNavBar() {
     fetchGames();
   }, [selectedGenre]);
 
+  const genreIcons = {
+    Action: actionIcon,
+    Indie: diamond,
+    Adventure: compass,
+    RPG: wizard,
+    Strategy: chess,
+    Shooter: target,
+    Casual: coffee,
+    Simulation: cctv,
+    Puzzle: solution,
+    Arcade: joystick,
+    Platformer: run,
+    Racing: racing,
+    "Massively Multiplayer": multPlayer,
+    Sports: football,
+    Fighting: fightingIcon,
+    Family: house,
+    "Board Games": numerology,
+    Educational: edu,
+    Card: flashCard,
+  }
 
 
   function handleGenreSelect(genreId) {
@@ -43,7 +83,8 @@ export default function SideNavBar() {
                 className={selectedGenre === genre.id ? "active" : ""}
                 onClick={() => handleGenreSelect(genre.id)}
               >
-                {genre.name}
+                <img src={genreIcons[genre.name]} alt={genre.name} className="genre-icon"/>
+                <span>{genre.name}</span>
               </button>
             </li>
           ))}

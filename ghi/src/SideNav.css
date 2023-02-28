@@ -129,3 +129,22 @@
   color: white;
   text-decoration: none;
 }
+
+button {
+  display: flex;
+  align-items: center;
+}
+
+.genre-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.sidebar h3 {
+  font-weight: bold;
+}
+
+.sidebar ul li button span {
+  font-weight: bold;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useToken, getUser } from "./auth";
+import background from './images/background.png';
 import "./login.css";
 
 function LoginForm() {
@@ -21,45 +22,34 @@ function LoginForm() {
     login(email, password);
   }
   return (
-    <div className="center">
-      <div className="">
-        <div className="shadow p-4 mt-4">
-          <h1>Login</h1>
-          <form onSubmit={HandleSubmit} id="login-form">
-            <div className="txt_field">
-              <input
-                onChange={handleEmailChange}
-                value={email}
-                required
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-              />
-              <label htmlFor="Email">Email</label>
-            </div>
-            <div className="txt_field">
-              <input
-                onChange={handlePasswordChange}
-                value={password}
-                type="password"
-                required
-                name="password"
-                id="password"
-                className="form-control"
-              />
-              <label>Password</label>
-            </div>
-            <input type="submit" value="Login" />
-            <h4>
-              <NavLink className="nav-link" to="/signup">
-                {" "}
-                Don't have an account yet? Sign Up!{" "}
-              </NavLink>
-            </h4>
-          </form>
-        </div>
-      </div>
+    <div className = "login" style={{ backgroundImage: `url(${background})` }}>
+    <div className="overlay">
+      <form className="form" onSubmit={HandleSubmit}>
+      <h3>Log in</h3>
+    <label htmlFor="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="email@email.com"
+      value={email}
+      onChange={handleEmailChange}
+      required
+    />
+    <label htmlFor="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="password"
+      value={password}
+      onChange={handlePasswordChange}
+      required
+    />
+    <button type="submit" className="button">Login</button>
+    <div className="links">
+      <NavLink to="/signup">Don't have an account? Sign up!</NavLink>
+    </div>
+  </form>
+    </div>
     </div>
   );
 }

@@ -36,7 +36,7 @@ services:
       - ./games:/app
     environment:
       DATABASE_URL: postgresql://games:games@postgres/games
-      API_KEY: bd6157ccfd954ffa922b2a920a46f6b5
+      API_KEY: b9a732370e824d0baf1936fbcb6cc2cc
       POSTGRES_USER: games
       SIGNING_KEY: nicktinagriffinchris
       WAIT_HOSTS: postgres:5432

@@ -10,6 +10,7 @@ function DetailsPage() {
   const [username, setUsername] = useState("");
   const [game, setGame] = useState([]);
   const [tags, setTags] = useState([]);
+
   const [genres, setGenres] = useState([]);
   const [screenshots, setScreenshots] = useState([]);
   const [gameImage, setGameImage] = useState([]);
@@ -80,6 +81,7 @@ function DetailsPage() {
     getReviews();
   };
 
+
   return (
     <div className="details-page-container" style={{ backgroundImage: `url(${game.background_image})`}}>
       <h1>{game.name}</h1>
@@ -108,7 +110,7 @@ function DetailsPage() {
           </div>
         </div>
         <div>
-          <h3>Tags</h3>
+          <h4>Tags</h4>
           {genres.slice(0, 5).map((genre) => (
             <ul key={genre.name}>
               {/^[A-Za-z0-9]*$/.test(genre.name[0]) ? genre.name : ""}
@@ -119,15 +121,18 @@ function DetailsPage() {
               {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ""}
             </ul>
           ))}
+          <div className="details-rating">
+            <h4>Rating: {game.rating} </h4>
         </div>
       </div>
-
-      <h3>Rating: {game.rating} </h3>
-      <div>
+      </div>
+      <div className="about-container">
+      <div className="about">
+      <h3>About</h3>
         <p dangerouslySetInnerHTML={{ __html: game.description }}></p>
       </div>
-      <h1>Reviews</h1>
-      <h2>
+      </div>
+      <h3>Reviews</h3>
         {username ? (
           <ReviewForm getReviews={getReviews} />
         ) : (
@@ -135,7 +140,6 @@ function DetailsPage() {
             Sign in to Create a Review!
           </NavLink>
         )}
-      </h2>
       <div className="row">
         {reviews
           .filter((review) => review.game_id === game.id)
