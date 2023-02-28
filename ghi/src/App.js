@@ -3,6 +3,7 @@ import {useState} from 'react';
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
 import { AuthProvider, useToken } from "./auth";
+import GamesPage from "./GamesPage";
 import './App.css';
 import SearchResults from "./SearchResults";
 import Nav from "./Nav";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/sidebar" element={<SideNavBar />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/games" element={<GamesPage />} />
             <Route path="/games/:id" element={<DetailsPage />} />
             <Route path="/search/:query" element={<SearchResults games={games} />} />
           </Routes>
