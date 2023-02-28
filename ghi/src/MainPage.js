@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams, NavLink } from "react-router-dom";
 import { getUser } from "./auth";
-
+import SideNavBar from "./SideNavBar";
 import Card from "react-bootstrap/Card";
 import "./MainPage.css";
+
 
 function MainPage() {
   const [games, setGames] = useState([]);
@@ -34,26 +35,19 @@ function MainPage() {
   };
 
   return (
-    <div className="row">
+    <div className="row main-container">
+    <h2><strong>New and Trending</strong></h2>
+    <p>Check out our latest and most popular games below</p>
       {games.map((game) => (
         <Card style={{ width: "20rem" }} key={game.id} className="cards">
-          <>
-            <NavLink to={"/games/" + game.id}>
-              {" "}
-              <Card.Img variant="top" src={game.background_image} />{" "}
+            <NavLink to={"/games/" + game.id} >
+              <Card.Img variant="top" src={game.background_image} />
             </NavLink>
             <Card.Body>
               <Card.Title>
                 <NavLink to={"/games/" + game.id}> {game.name} </NavLink>
               </Card.Title>
-              <Card.Text> {game.rating} / 5.00 </Card.Text>
-              {game.tags.slice(0, 3).map((tag) => (
-                <Card.Text key={tag.name}>
-                  {/^[A-Za-z0-9]*$/.test(tag.name[0]) ? tag.name : ""}
-                </Card.Text>
-              ))}
             </Card.Body>
-          </>
         </Card>
       ))}
     </div>

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+.navbar-brand
+{
+  font-size: 33px !important;
+  margin-left: 0px;
+  font-family: 'Tilt Warp', cursive;
+  color: white !important;
+}
+
+.navbar-custom {
+  background-color: #0c162a; /* set the background color to dark gray */
+  color: white;
+}
+
+.navbar {
+  height: 80px;
+  padding: 20px !important;
+  padding-top: 10px;
+  color: #0c162a;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.btn {
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-radius: 20px !important;
+  padding: 10px 20px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  outline: none !important;
+  margin-right: 10px !important;
+  font-weight: bold !important;
+}
+
+.btn:hover {
+  background-color: #fff !important;
+  color: #0c162a !important;
+}
+
+input[type="search"] {
+  width: 600px;
+  border-radius: 20px;
+  border-color: #0c162a;
+}
+
+.form-control {
+  background-color: #333333 !important;
+}
+
+.form-control:hover,
+.form-control:focus {
+  background-color: white !important;
+  color: black !important;
+}
+
+.form-control::placeholder {
+  color: #ffffff !important;
+}
+
+.form-control:hover::placeholder {
+  color: black !important;
+}

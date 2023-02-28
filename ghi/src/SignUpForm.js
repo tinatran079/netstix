@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useToken } from "./auth";
 import "./SignUp.css";
 import { NavLink } from "react-router-dom";
+import background2 from './images/background2.png';
 
 function SignUpForm() {
   const [token, login, logout, signup] = useToken();
@@ -25,57 +26,43 @@ function SignUpForm() {
   }
 
   return (
-    <div className="center">
-      <div className="">
-        <div className="shadow p-4 mt-4">
-          <h1>Sign Up</h1>
-          <form onSubmit={handleSubmit} id="login-form">
-            <div className="txt_field">
-              <input
-                onChange={handleUsernameChange}
-                value={username}
-                required
-                type="username"
-                name="username"
-                id="username"
-                className="form-control"
-              />
-              <label htmlFor="username">Username</label>
-            </div>
-            <div className="txt_field">
-              <input
-                onChange={handlePasswordChange}
-                value={password}
-                required
-                type="password"
-                name="password"
-                id="password"
-                className="form-control"
-              />
-              <label htmlFor="username">Password</label>
-            </div>
-            <div className="txt_field">
-              <input
-                onChange={handleEmailChange}
-                value={email}
-                required
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-              />
-              <label htmlFor="email">Email</label>
-            </div>
-            <input type="submit" value="Signup" />
-            <h4>
-              <NavLink className="nav-link" to="/login">
-                {" "}
-                Already have an account? Log in!{" "}
-              </NavLink>
-            </h4>
-          </form>
-        </div>
-      </div>
+     <div className = "signup" style={{ backgroundImage: `url(${background2})` }}>
+    <div className="overlay">
+      <form className="form" onSubmit={handleSubmit}>
+      <h3>Sign Up</h3>
+      <label htmlFor="username">Username</label>
+    <input
+      type="username"
+      id="username"
+      placeholder="username"
+      value={username}
+      onChange={handleUsernameChange}
+      required
+    />
+    <label htmlFor="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="email@email.com"
+      value={email}
+      onChange={handleEmailChange}
+      required
+    />
+    <label htmlFor="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="password"
+      value={password}
+      onChange={handlePasswordChange}
+      required
+    />
+    <button type="submit" className="button">Sign up</button>
+    <div className="links">
+      <NavLink to="/login">Already have an account? Log in</NavLink>
+    </div>
+  </form>
+    </div>
     </div>
   );
 }

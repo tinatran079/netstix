@@ -1,14 +1,13 @@
-.App {
-  text-align: center;
+body {
+  color: white !important;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
+.main-container {
+  background-color: #24282f;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }

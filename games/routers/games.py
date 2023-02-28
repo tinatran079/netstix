@@ -49,3 +49,27 @@ def get_games(
             response.status_code = 404
         else:
             return data
+
+@router.get("/api/genres")
+def get_genres(
+    response: Response,
+    queries: GamesQueries = Depends(),
+):
+    data = queries.get_all_genres()
+    if data is None:
+        response.status_code = 404
+    else:
+        return data
+
+
+@router.get("/api/games/genres/{genre_id}")
+def get_games_by_genre(
+    genre_id: int,
+    response: Response,
+    queries: GamesQueries = Depends(),
+):
+    data = queries.get_games_by_genre(genre_id)
+    if data is None:
+        response.status_code = 404
+    else:
+        return data
