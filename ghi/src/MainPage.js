@@ -6,7 +6,6 @@ import SideNavBar from "./SideNavBar";
 import Card from "react-bootstrap/Card";
 import "./MainPage.css";
 
-
 function MainPage() {
   const [games, setGames] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams([]);
@@ -36,18 +35,20 @@ function MainPage() {
 
   return (
     <div className="row main-container">
-    <h2><strong>New and Trending</strong></h2>
-    <p>Check out our latest and most popular games below</p>
+      <h2>
+        <strong>New and Trending</strong>
+      </h2>
+      <p>Check out our latest and most popular games below</p>
       {games.map((game) => (
         <Card style={{ width: "20rem" }} key={game.id} className="cards">
-            <NavLink to={"/games/" + game.id} >
-              <Card.Img variant="top" src={game.background_image} />
-            </NavLink>
-            <Card.Body>
-              <Card.Title>
-                <NavLink to={"/games/" + game.id}> {game.name} </NavLink>
-              </Card.Title>
-            </Card.Body>
+          <NavLink to={"/games/" + game.id}>
+            <Card.Img variant="top" src={game.background_image} />
+          </NavLink>
+          <Card.Body>
+            <Card.Title>
+              <NavLink to={"/games/" + game.id}> {game.name} </NavLink>
+            </Card.Title>
+          </Card.Body>
         </Card>
       ))}
     </div>

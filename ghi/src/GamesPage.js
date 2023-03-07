@@ -27,7 +27,7 @@ function GamesPage() {
   };
 
   return (
-     <div className="main">
+    <div className="main">
       {games !== null &&
         games.map((game) => (
           <div className="card" key={game.id}>

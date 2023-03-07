@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import "./SideNav.css";
-import actionIcon from './images/actionIcon.png';
-import fightingIcon from './images/fightingIcon.png';
-import chess from './images/chess.png';
-import compass from './images/compass.png';
-import diamond from './images/diamond.png';
-import edu from './images/edu.png';
-import flashCard from './images/flashCard.png';
-import cctv from './images/cctv.png';
-import coffee from './images/coffee.png';
-import house from './images/house.png';
-import joystick from './images/joystick.png';
-import multPlayer from './images/multPlayer.png';
-import numerology from './images/numerology.png';
-import racing from './images/racing.png';
-import football from './images/football.png';
-import solution from './images/solution.png';
-import target from './images/target.png';
-import wizard from './images/wizard.png';
-import run from './images/run.png';
+import actionIcon from "./images/actionIcon.png";
+import fightingIcon from "./images/fightingIcon.png";
+import chess from "./images/chess.png";
+import compass from "./images/compass.png";
+import diamond from "./images/diamond.png";
+import edu from "./images/edu.png";
+import flashCard from "./images/flashCard.png";
+import cctv from "./images/cctv.png";
+import coffee from "./images/coffee.png";
+import house from "./images/house.png";
+import joystick from "./images/joystick.png";
+import multPlayer from "./images/multPlayer.png";
+import numerology from "./images/numerology.png";
+import racing from "./images/racing.png";
+import football from "./images/football.png";
+import solution from "./images/solution.png";
+import target from "./images/target.png";
+import wizard from "./images/wizard.png";
+import run from "./images/run.png";
 
 export default function SideNavBar() {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
   const [games, setGames] = useState([]);
-
 
   useEffect(() => {
     async function fetchGenres() {
@@ -36,9 +35,13 @@ export default function SideNavBar() {
     fetchGenres();
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     async function fetchGames() {
-      const response = await fetch(selectedGenre !== "" ? `http://localhost:8000/api/games/genres/${selectedGenre}` : "http://localhost:8000/api/games");
+      const response = await fetch(
+        selectedGenre !== ""
+          ? `http://localhost:8000/api/games/genres/${selectedGenre}`
+          : "http://localhost:8000/api/games"
+      );
       const data = await response.json();
       setGames(data.results);
     }
@@ -65,8 +68,7 @@ export default function SideNavBar() {
     "Board Games": numerology,
     Educational: edu,
     Card: flashCard,
-  }
-
+  };
 
   function handleGenreSelect(genreId) {
     setSelectedGenre(genreId);
@@ -83,7 +85,11 @@ export default function SideNavBar() {
                 className={selectedGenre === genre.id ? "active" : ""}
                 onClick={() => handleGenreSelect(genre.id)}
               >
-                <img src={genreIcons[genre.name]} alt={genre.name} className="genre-icon"/>
+                <img
+                  src={genreIcons[genre.name]}
+                  alt={genre.name}
+                  className="genre-icon"
+                />
                 <span>{genre.name}</span>
               </button>
             </li>

@@ -58,7 +58,7 @@ function DetailsPage() {
     setGame(data);
     setTags(data.tags);
     setGenres(data.genres);
-    setGameImage(data.background_image)
+    setGameImage(data.background_image);
   };
 
   const getScreenshots = async () => {
@@ -81,9 +81,11 @@ function DetailsPage() {
     getReviews();
   };
 
-
   return (
-    <div className="details-page-container" style={{ backgroundImage: `url(${game.background_image})`}}>
+    <div
+      className="details-page-container"
+      style={{ backgroundImage: `url(${game.background_image})` }}
+    >
       <h1>{game.name}</h1>
       <div className="container">
         <div className="slideshow">
@@ -123,23 +125,23 @@ function DetailsPage() {
           ))}
           <div className="details-rating">
             <h4>Rating: {game.rating} </h4>
+          </div>
         </div>
       </div>
-      </div>
       <div className="about-container">
-      <div className="about">
-      <h3>About</h3>
-        <p dangerouslySetInnerHTML={{ __html: game.description }}></p>
-      </div>
+        <div className="about">
+          <h3>About</h3>
+          <p dangerouslySetInnerHTML={{ __html: game.description }}></p>
+        </div>
       </div>
       <h3>Reviews</h3>
-        {username ? (
-          <ReviewForm getReviews={getReviews} />
-        ) : (
-          <NavLink className="navlink" to="/login">
-            Sign in to Create a Review!
-          </NavLink>
-        )}
+      {username ? (
+        <ReviewForm getReviews={getReviews} />
+      ) : (
+        <NavLink className="navlink" to="/login">
+          Sign in to Create a Review!
+        </NavLink>
+      )}
       <div className="row">
         {reviews
           .filter((review) => review.game_id === game.id)
