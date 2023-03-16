@@ -38,8 +38,8 @@ Users of the site can:
 4. `docker volume create pg-admin`
 5. `docker compose build`
 6. `docker compose up`
-7. `docker exec -it module3-project-gamma-fastapi-1 bash`
-8. `python -m migrations up` while in the module3-project-gamma-fastapi-1 container.
+7. `docker exec -it net-stix-fastapi-1 bash`
+8. `python -m migrations up` while in the net-stix-fastapi-1 container.
 9. Enjoy Netstix (the most important step)
 
 
